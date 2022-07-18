@@ -33,13 +33,14 @@ public class JsonPathMainClass {
         System.out.println("Get String: " + category);
 
         //get Int
+        int count = categoriesJsonPath.getInt("categories.size()");
+        System.out.println("Categories count is : " + count);
 
         //get List
         List<String> listOfCategories = categoriesJsonPath.getList("categories");
         System.out.println("Categories are : " + listOfCategories);
 
         //get Boolean
-//
         Boolean checkForBoolean = entriesJsonPath.getBoolean("entries[55].HTTPS");
         System.out.println("The boolean is : " + checkForBoolean);
 
