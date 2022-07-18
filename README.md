@@ -50,3 +50,32 @@ As a trainee,
 I understand the json path mechanism of RestAssured 
 
 I understand the nested json responses
+
+# Cucumber tests with RestAssured
+Description
+
+Practical tasks:
+
+By using the open api from the Usseful links:
+Create Cucumber tests with RestAssured for verification of:
+
+1. Status code 200 for endpoints : 
+/health
+/categories
+/random
+/entries
+
+*Use Scenario outline for these ednpoints
+
+2. Content testing for each parameter that is accepted for endpoints:
+
+/categories 
+/random
+/entries
+
+Acceptance criteria:
+
+As a trainee, 
+
+I understand Cucumber tests with API
+I understand the smoke and content tests
