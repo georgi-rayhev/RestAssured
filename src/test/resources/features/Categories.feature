@@ -1,4 +1,4 @@
-
+  @Categories
   Feature: In this feature we will test content of /categories endpoint
 
     Scenario: Verify Categories response status code and categories count
@@ -7,8 +7,7 @@
       When Get count of categories
       Then Verify that categories count are 51
 
-    @Categories
-     Scenario: Testing Categories endpoint content
+     Scenario Outline: Testing Categories endpoint content
         When Call Categories endpoint
         Then Verify that response have status code 200
         And  Get all categories
