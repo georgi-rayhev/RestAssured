@@ -1,14 +1,11 @@
 package cucumber.StepDefinitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
-
-import java.util.List;
 import java.util.Map;
 
 
@@ -19,9 +16,6 @@ public class EntriesStepDefinitions {
     private JsonPath entriesJsonPath;
     private int count;
     private Map<String, String> map;
-    private List<Object> listOfEtries;
-
-
     @When("Call Entries endpoint")
     public void callCategoriesEndpoint() {
         response = RestAssured.given().when().get(ENTRIES_URL);
