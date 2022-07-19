@@ -7,6 +7,8 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
+
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,8 +19,8 @@ public class EntriesStepDefinitions {
     private JsonPath entriesJsonPath;
     private int count;
     private Map<String, String> map;
+    private List<Object> listOfEtries;
 
-    private Map<Object, Object> map2;
 
     @When("Call Entries endpoint")
     public void callCategoriesEndpoint() {
@@ -54,27 +56,21 @@ public class EntriesStepDefinitions {
         }
     }
 
-    @And("Send request with parameters")
-    public void verifyContent() {
-        response = requestWithParameters(Map.of("Category","Animals"));
-        System.out.println(response.body().prettyPrint());
+    @When("Send request with parameters to entries endpoint where parameter is {} and value is {}")
+    public void sendRequestWithParameters(String parameter, String value) {
+        response = requestWithParameters(Map.of(parameter,value));
     }
 
-    @Then("Verify entries count is {int} and fields of entries are not empty")
-    public void verifyEntriesCountAndFields(int expectedEntriesCount) {
-        Assert.assertEquals(count, expectedEntriesCount);
-//        for (Map.Entry<Object, Object> objectObjectEntry : map2.entrySet()) {
-//            Assert.assertNotNull(objectObjectEntry.getValue());
-//        }
+    @Then("Verify count is {}")
+    public void verifyCount(int expectedCount) {
+        Assert.assertEquals(expectedCount, count);
     }
 
     private static <K, V> Response requestWithParameters(Map map) {
-        System.out.println("Response with parameters is : ");
         return RestAssured.given()
                 .with()
                 .queryParams(map)
                 .when()
                 .get(ENTRIES_URL);
     }
-
 }
