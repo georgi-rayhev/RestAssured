@@ -2,16 +2,14 @@
   Feature: In this feature we will test content of /categories endpoint
 
     Scenario: Verify Categories response status code and categories count
-      When Call Categories endpoint
-      Then Verify that response have status code 200
-      When Get count of categories
-      Then Verify that categories count are 51
+      Given Call Categories endpoint
+      When  Get count of categories
+      Then  Verify that categories count are 51
 
      Scenario Outline: Testing Categories endpoint content
-        When Call Categories endpoint
-        Then Verify that response have status code 200
-        And  Get all categories
-        Then Verify that response contains <categories>
+        Given Call Categories endpoint
+        When  Get all categories
+        Then  Verify that response contains <categories>
         Examples:
           | categories                     |
           | Animals                        |

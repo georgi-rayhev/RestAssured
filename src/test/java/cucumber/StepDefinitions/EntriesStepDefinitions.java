@@ -1,5 +1,6 @@
 package cucumber.StepDefinitions;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
@@ -16,14 +17,9 @@ public class EntriesStepDefinitions {
     private JsonPath entriesJsonPath;
     private int count;
     private Map<String, String> map;
-    @When("Call Entries endpoint")
+    @Given("Call Entries endpoint")
     public void callCategoriesEndpoint() {
         response = RestAssured.given().when().get(ENTRIES_URL);
-    }
-
-    @Then("Verify that entries response have status code {int}")
-    public void verifyThatResponseHaveStatusCodeAndCategoriesCountAre(int expectedStatusCode) {
-        Assert.assertEquals(expectedStatusCode, response.getStatusCode());
     }
 
     @When("Get count of entries")
@@ -50,7 +46,7 @@ public class EntriesStepDefinitions {
         }
     }
 
-    @When("Send request with parameters to entries endpoint where parameter is {} and value is {}")
+    @Given("Send request with parameters to entries endpoint where parameter is {} and value is {}")
     public void sendRequestWithParameters(String parameter, String value) {
         response = requestWithParameters(Map.of(parameter,value));
     }

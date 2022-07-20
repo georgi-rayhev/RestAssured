@@ -1,6 +1,7 @@
 package cucumber.StepDefinitions;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
@@ -17,7 +18,7 @@ public class CategoriesStepDefinitions {
     private JsonPath categoriesJsonPath;
     private List<String> listOfCategories;
 
-    @When("Call Categories endpoint")
+    @Given("Call Categories endpoint")
     public void callCategoriesEndpoint() {
         response = RestAssured.given().when().get(CATEGORIES_URL);
     }
@@ -38,7 +39,7 @@ public class CategoriesStepDefinitions {
         Assert.assertEquals(expectedCategoriesCount, count);
     }
 
-    @And("Get all categories")
+    @When("Get all categories")
     public void getAllCategories() {
         categoriesJsonPath = response.jsonPath();
         listOfCategories = categoriesJsonPath.getList("categories");

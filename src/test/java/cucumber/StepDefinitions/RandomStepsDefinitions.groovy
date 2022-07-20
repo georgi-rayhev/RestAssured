@@ -1,6 +1,7 @@
 package cucumber.StepDefinitions
 
 import io.cucumber.java.en.And
+import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import io.restassured.RestAssured
@@ -16,7 +17,7 @@ class RandomStepsDefinitions {
     private int count
     private Map<String, String> map;
 
-    @When("Call Random endpoint")
+    @Given("Call Random endpoint")
     public void calRandomEndpoint() {
         response = RestAssured.given().when().get(RANDOM_URL);
     }
@@ -34,24 +35,23 @@ class RandomStepsDefinitions {
         Assert.assertEquals(expectedCount, count)
     }
 
-    @When("Send request with parameters to random endpoint where parameter is {} and value is {}")
+    @Given("Send request with parameters to random endpoint where parameter is {} and value is {}")
     public void sendRequestWithParameters(String parameter, String value) {
         response = requestWithParameters(Map.of(parameter,value))
     }
 
-    @And("Get response count")
+    @When("Get response count")
     public void getCount() {
         entriesJsonPath = response.jsonPath();
         count = entriesJsonPath.getInt("entries.size()");
     }
 
-    @Then("Verify response is {int} and count is {int}")
-    public void verifyResponseAndCount(int expectedStatusCode, int expectedCount) {
-        Assert.assertEquals(expectedStatusCode, response.getStatusCode());
+    @Then("Verify Count is {int}")
+    public void verifyResponseAndCount(int expectedCount) {
         Assert.assertEquals(count, expectedCount)
     }
 
-    @And("Get response object")
+    @When("Get response object")
     public void getResponseObject() {
         entriesJsonPath = response.jsonPath();
         map = entriesJsonPath.getMap("entries[0]");
