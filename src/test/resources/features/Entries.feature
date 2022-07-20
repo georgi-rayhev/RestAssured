@@ -5,7 +5,7 @@
       When Call Entries endpoint
       Then Verify that entries response have status code 200
       When Get count of entries
-      Then Verify that entries count are 1421
+      Then Verify that entries count are 1425
 
       Scenario Outline: Send request with params
         When Send request with parameters to entries endpoint where parameter is <parameter> and value is <value>
