@@ -8,16 +8,7 @@ import java.util.Map;
 
 public class JsonPathMainClass {
     private static final String URL = "https://api.publicapis.org/";
-
-    private static void getResponseHeader(String value) {
-        System.out.println("Header with value : " + value + " is : ");
-        System.out.println(RestAssured
-                .given()
-                .when()
-                .get(URL)
-                .getHeader(value));
-    }
-
+    
     public static void main(String[] args) {
 
         RestAssured.baseURI = URL;
